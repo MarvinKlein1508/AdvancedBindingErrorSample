@@ -1,0 +1,125 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h2>Input1</h2>
+<EditForm Model="Input1">
+
+    <InputSelect TValue="int"
+                 Value="Input1.MyValue"
+                 ValueChanged="OnValueChanged1"
+                 ValueExpression="() => Input1.MyValue"
+                 class="form-select">
+        <option value="0">None</option>
+        <option value="1">1. Option</option>
+        <option value="2">2. Option</option>
+        <option value="3">3. Option</option>
+        <option value="4">4. Option</option>
+    </InputSelect>
+</EditForm>
+<h2>Input2</h2>
+<EditForm Model="Input2">
+
+    <InputSelect TValue="int"
+                 Value="Input2.MyValue"
+                 ValueChanged="OnValueChanged2"
+                 ValueExpression="() => Input2.MyValue"
+                 class="form-select">
+        <option value="0">None</option>
+        <option value="1">1. Option</option>
+        <option value="2">2. Option</option>
+        <option value="3">3. Option</option>
+        <option value="4">4. Option</option>
+    </InputSelect>
+</EditForm>
+<h2>Input3</h2>
+<EditForm Model="Input3">
+
+    <InputSelect TValue="int"
+                 Value="Input3.MyValue"
+                 ValueChanged="OnValueChanged3"
+                 ValueExpression="() => Input3.MyValue"
+                 class="form-select">
+        <option value="0">None</option>
+        <option value="1">1. Option</option>
+        <option value="2">2. Option</option>
+        <option value="3">3. Option</option>
+        <option value="4">4. Option</option>
+    </InputSelect>
+</EditForm>
+
+<h2>Input4</h2>
+<EditForm Model="Input4">
+
+    <InputSelect TValue="int"
+                 Value="Input4.MyValue"
+                 ValueChanged="OnValueChanged4"
+                 ValueExpression="() => Input4.MyValue"
+                 class="form-select">
+        <option value="0">None</option>
+        <option value="1">1. Option</option>
+        <option value="2">2. Option</option>
+        <option value="3">3. Option</option>
+        <option value="4">4. Option</option>
+    </InputSelect>
+</EditForm>
+
+<h2>Input5</h2>
+<EditForm Model="Input5">
+
+    <InputSelect Value="Input5.MyValue"
+                 ValueChanged="async (int value) => await OnValueChanged5(value)"
+                 ValueExpression="() => Input5.MyValue"
+                 class="form-select">
+        <option value="0">None</option>
+        <option value="1">1. Option</option>
+        <option value="2">2. Option</option>
+        <option value="3">3. Option</option>
+        <option value="4">4. Option</option>
+    </InputSelect>
+</EditForm>
+
+
+@code {
+    public Test Input1 { get; set; } = new();
+    public Test Input2 { get; set; } = new();
+    public Test Input3 { get; set; } = new();
+    public Test Input4 { get; set; } = new();
+    public Test Input5 { get; set; } = new();
+    private Task OnValueChanged1(int value)
+    {
+        throw new Exception();
+        Input1.MyValue = value;
+        return Task.CompletedTask;
+    }
+
+    private async Task OnValueChanged2(int value)
+    {
+        throw new Exception();
+        await Task.Delay(2000);
+        Input2.MyValue = value;
+    }
+
+    private void OnValueChanged3(int value)
+    {
+        throw new Exception();
+        Input3.MyValue = value;
+    }
+    private async Task OnValueChanged4(int value)
+    {
+        await Task.Delay(2000);
+        Input4.MyValue = 3;
+    }
+
+    private async Task OnValueChanged5(int value)
+    {
+        throw new Exception();
+        await Task.Delay(2000);
+        Input5.MyValue = value;
+    }
+
+    public class Test
+    {
+        public int MyValue { get; set; }
+    }
+}
